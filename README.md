@@ -11,7 +11,7 @@ Each pair of particle types has an associated randomly generated interaction.
 
 The interaction is a force with magnitude:
 
-`4 * strength * ( (eqDist / r) ^ 2 - eqDist / r )` where `r` is their current distance.
+`4 * strength * ( (eqDist / r) - (eqDist / r) ^ 2 )` where `r` is their current distance.
 
 The value `eqDist ` determines the distance at which the two particles experience no force, while `strength` determines the maximum possible attraction.
 
@@ -21,7 +21,7 @@ The particles evolve through time by interacting with each other and experiencin
 
 Finally, for each particle we get its accelaration by dividing the total force by its mass.
 
-The rules (other than the arbitrary nature of the particle interactions) are physically motivated and thus lead to conservation of momentum (if we ignore the drag / record the momentum of the "atmosphere") 
+The rules (other than the arbitrary nature of the particle interactions) are physically motivated and thus lead to the typicall 
 
 These rules result in various clusters of particle lattices forming.
 
