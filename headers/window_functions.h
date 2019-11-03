@@ -3,8 +3,8 @@
 
 #include "vec2d.h"
 
-#include<string>
-#include<GLFW/glfw3.h>
+#include <string>
+#include <GLFW/glfw3.h>
 
 extern int keyPress;
 extern int mouseClick;

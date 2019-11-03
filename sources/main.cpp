@@ -1,11 +1,8 @@
-//IUPAC Name Generator
-
 #include "../headers/window_functions.h"
 #include "../headers/run.h"
 
-#include<iostream>
-#include<conio.h>
-#include<stdlib.h>
+#include <iostream>
+#include <stdlib.h>
 
 GLFWwindow *window;
 

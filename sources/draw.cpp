@@ -2,9 +2,9 @@
 #include "../headers/window_size.h"
 #include "../headers/settings.h"
 
-#include<math.h>
+#include <math.h>
 
-const double DEG2RAD = 0.0174533;
+const double DEG2RAD = 0.01745339;
 const Color backColor = {1, 1, 1};
 
 void initDraw(GLFWwindow* w)

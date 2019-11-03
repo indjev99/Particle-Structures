@@ -3,8 +3,8 @@
 #include "../headers/draw.h"
 #include "../headers/window_functions.h"
 
-#include<stdlib.h>
-#include<time.h>
+#include <stdlib.h>
+#include <time.h>
 
 int numParticles = 120;
 int numTypes = 8;
