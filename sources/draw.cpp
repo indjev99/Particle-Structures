@@ -41,21 +41,21 @@ void drawCircle(const Vec2D& pos, double radius)
 }
 void drawParticle(const Particle& particle)
 {
-    double resizeScale = std::min(1.0, 1.0 * windowWidth / windowHeight);
+    double scale = std::min(1.0, 1.0 * windowWidth / windowHeight) / univRad;
 
-    const Color& color = particle.getType().color;
-    double mass = particle.getType().mass;
-    double radius = particle.getType().radius;
+    const Color& color = particle.getColor();
+    double mass = particle.getMass();
+    double radius = particle.getRadius();
 
     glColor3f(color.r, color.g, color.b);
-    drawCircle(particle.getPos() / univRad * resizeScale, radius * resizeScale);
+    drawCircle(particle.getPos() * scale, radius * scale);
 
     if (mass < 0)
     {
         radius *= 0.8;
 
         glColor3f(backColor.r, backColor.g, backColor.b);
-        drawCircle(particle.getPos() / univRad * resizeScale, radius * resizeScale);
+        drawCircle(particle.getPos() * scale, radius * scale);
     }
 }
 void drawBackground(GLFWwindow* w)

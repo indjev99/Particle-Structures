@@ -9,7 +9,7 @@
 int numParticles = 120;
 int numTypes = 8;
 
-int timeResolution = 10;
+int timeResolution = 12;
 
 void run(GLFWwindow* w)
 {

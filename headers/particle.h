@@ -9,8 +9,10 @@
 struct Particle
 {
     Particle(const std::vector<ParticleType>& types);
-    const ParticleType& getType() const;
     int getTypeID() const;
+    double getMass() const;
+    double getRadius() const;
+    const Color& getColor() const;
     const Vec2D& getPos() const;
     void addForce(const Vec2D force);
     void step(double timeDelta);

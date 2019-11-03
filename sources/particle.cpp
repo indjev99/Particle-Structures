@@ -8,13 +8,21 @@ Particle::Particle(const std::vector<ParticleType>& types)
 {
     randomize(types);
 }
-const ParticleType& Particle::getType() const
-{
-    return *type;
-}
 int Particle::getTypeID() const
 {
     return type->getID();
+}
+double Particle::getMass() const
+{
+    return type->mass;
+}
+double Particle::getRadius() const
+{
+    return type->radius;
+}
+const Color& Particle::getColor() const
+{
+    return type->color;
 }
 const Vec2D& Particle::getPos() const
 {
@@ -22,7 +30,7 @@ const Vec2D& Particle::getPos() const
 }
 void Particle::addForce(const Vec2D force)
 {
-    acc += force / getType().mass;
+    acc += force / getMass();
 }
 double sign(double x)
 {
@@ -38,14 +46,14 @@ void bounce(double& pos, double& vel, double bound)
 }
 void Particle::step(double timeDelta)
 {
-    double currDrag = dragCoeff * 2 * getType().radius / getType().mass;
+    double currDrag = dragCoeff * 2 * getRadius() / getMass();
     acc += -vel * currDrag;
     pos += vel * timeDelta + acc * timeDelta * timeDelta / 2;
     vel += acc * timeDelta - acc * currDrag * timeDelta * timeDelta / 2;
     acc = {0, 0};
 
-    bounce(pos.x, vel.x, univRad);
-    bounce(pos.y, vel.y, univRad);
+    bounce(pos.x, vel.x, univRad - getRadius());
+    bounce(pos.y, vel.y, univRad - getRadius());
 }
 void Particle::randomize(const std::vector<ParticleType>& types)
 {
@@ -54,9 +62,9 @@ void Particle::randomize(const std::vector<ParticleType>& types)
 
     pos = {0, 0}; /// TODO: RANDOMIZER
 
-    int range = univRad * 20 + 1;
-    double x = rand() % range / 10.0 - univRad;
-    double y = rand() % range / 10.0 - univRad;
+    int range = (univRad - getRadius()) * 20 + 1;
+    double x = rand() % range / 10.0 - univRad + getRadius();
+    double y = rand() % range / 10.0 - univRad + getRadius();
     pos = {x, y};
 
     vel = {0, 0};
