@@ -9,8 +9,6 @@ const double DEG2RAD = PI / 180;
 
 void initDraw(GLFWwindow* w)
 {
-    glfwSetWindowShouldClose(w, 0);
-
     float ratio;
     int width, height;
 

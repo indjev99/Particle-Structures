@@ -5,14 +5,17 @@
 
 struct ParticleType
 {
-    double mass; // kg
-    double radius; // m
-    Color color;
     ParticleType(int ID);
     int getID() const;
+    double getMass() const;
+    double  getRadius() const;
+    const Color& getColor() const;
     void randomize();
 private:
     int ID;
+    double mass; // kg
+    double radius; // m
+    Color color;
 };
 
 #endif // PARTICLE_TYPE_H_INCLUDED

@@ -9,6 +9,7 @@
 struct Particle
 {
     Particle(const std::vector<ParticleType>& types);
+    Particle(const ParticleType& type);
     int getTypeID() const;
     double getMass() const;
     double getRadius() const;
@@ -16,12 +17,17 @@ struct Particle
     const Vec2D& getPos() const;
     void addForce(const Vec2D force);
     void step(double timeDelta);
+    void updatePos(const Vec2D& newPos, double timeDelta);
     void randomize(const std::vector<ParticleType>& types);
+    void lock();
+    void unlock();
 private:
+    void randomizePos();
     const ParticleType* type;
     Vec2D pos; // m
     Vec2D vel; // m / s
     Vec2D acc; // m / s^2
+    bool locked;
 };
 
 #endif // PARTICLE_H_INCLUDED

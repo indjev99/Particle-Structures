@@ -3,6 +3,7 @@
 
 #include "particle.h"
 #include "particle_interaction.h"
+#include "particle_controller.h"
 
 #include <vector>
 
@@ -13,6 +14,7 @@ struct ParticleSystem
     void step(double timeDelta);
     void randomizeParticles(int n);
     void randomize(int n, int t);
+    ParticleController getController();
 private:
     int numParticles, numTypes;
     std::vector<ParticleType> types;

@@ -7,6 +7,8 @@ struct Vec2D
     double length();
 };
 
+extern const Vec2D zero2D;
+
 Vec2D operator+(const Vec2D& u, const Vec2D& v);
 Vec2D operator-(const Vec2D& u, const Vec2D& v);
 Vec2D operator-(const Vec2D& u);

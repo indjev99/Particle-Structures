@@ -1,4 +1,5 @@
 #include "../headers/particle_system.h"
+#include "../headers/settings.h"
 
 ParticleSystem::ParticleSystem(int numParticles, int numTypes)
 {
@@ -17,9 +18,9 @@ void ParticleSystem::step(double timeDelta)
             if (i == j) continue;
             int id1 = particles[i].getTypeID();
             int id2 = particles[j].getTypeID();
-            Vec2D diff = particles[j].getPos() - particles[i].getPos();
-            double dist = diff.length();
-            Vec2D force = diff / dist * interactions[id1][id2].eval(dist);
+            Vec2D offset = particles[j].getPos() - particles[i].getPos();
+            double dist = offset.length();
+            Vec2D force = offset / dist * interactions[id1][id2].eval(dist);
             particles[i].addForce(force);
         }
     }
@@ -52,10 +53,13 @@ void ParticleSystem::randomize(int numParticles, int numTypes)
     {
         for (int j = 0; j < numTypes; ++j)
         {
-            if (i <= j) interactions[i].push_back(ParticleInteraction());
-            else interactions[i].push_back(interactions[j][i]);
+            if (symmetricInteractions && j < i) interactions[i].push_back(interactions[j][i]);
+            else interactions[i].push_back(ParticleInteraction());
         }
     }
     randomizeParticles(numParticles);
 }
-
+ParticleController ParticleSystem::getController()
+{
+    return ParticleController(numParticles, particles, types);
+}

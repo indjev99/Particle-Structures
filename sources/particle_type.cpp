@@ -5,13 +5,26 @@
 #include <math.h>
 #define PI 3.14159265359
 
-ParticleType::ParticleType(int ID): ID(ID)
+ParticleType::ParticleType(int ID):
+    ID(ID)
 {
     randomize();
 }
 int ParticleType::getID() const
 {
     return ID;
+}
+double ParticleType::getMass() const
+{
+    return mass;
+}
+double ParticleType::getRadius() const
+{
+    return radius;
+}
+const Color& ParticleType::getColor() const
+{
+    return color;
 }
 void ParticleType::randomize()
 {

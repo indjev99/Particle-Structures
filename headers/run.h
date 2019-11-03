@@ -3,6 +3,6 @@
 
 #include <GLFW/glfw3.h>
 
-void run(GLFWwindow* w);
+void run(GLFWwindow* window);
 
 #endif //RUN_H_INCLUDED

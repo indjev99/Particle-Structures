@@ -2,7 +2,7 @@
 
 Color backColor = {1, 1, 1};
 
-int timeResolution = 12;
+int timeResolution = 15;
 
 int numParticles = 120;
 int numTypes = 8;
@@ -14,9 +14,11 @@ double particleDensity = 0.08;
 double minMass = 0.5;
 double maxMass = 5;
 
+bool symmetricInteractions = true;
+
 double minEqDist = 10;
 double maxEqDist = 60;
 
 double baseStrength = 0.0015;
-double minLogStrength = -3;
-double maxLogStrength = -0;
+double minLogStrength = -3.5;
+double maxLogStrength = -0.5;

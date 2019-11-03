@@ -14,6 +14,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-DDEBUG" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -49,6 +50,7 @@
 		<Unit filename="headers/color.h" />
 		<Unit filename="headers/draw.h" />
 		<Unit filename="headers/particle.h" />
+		<Unit filename="headers/particle_controller.h" />
 		<Unit filename="headers/particle_interaction.h" />
 		<Unit filename="headers/particle_system.h" />
 		<Unit filename="headers/particle_type.h" />
@@ -61,6 +63,7 @@
 		<Unit filename="sources/draw.cpp" />
 		<Unit filename="sources/main.cpp" />
 		<Unit filename="sources/particle.cpp" />
+		<Unit filename="sources/particle_controller.cpp" />
 		<Unit filename="sources/particle_interaction.cpp" />
 		<Unit filename="sources/particle_system.cpp" />
 		<Unit filename="sources/particle_type.cpp" />

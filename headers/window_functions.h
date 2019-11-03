@@ -8,6 +8,7 @@
 
 extern int keyPress;
 extern int mouseClick;
+extern bool mouseMoved;
 extern Vec2D mousePos;
 
 std::string setErrorCallback();
