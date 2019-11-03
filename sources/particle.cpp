@@ -1,8 +1,8 @@
 #include "../headers/particle.h"
 #include "../headers/settings.h"
+#include "../headers/randomizer.h"
 
 #include <math.h>
-#include <stdlib.h>
 
 Particle::Particle(const std::vector<ParticleType>& types)
 {
@@ -57,14 +57,11 @@ void Particle::step(double timeDelta)
 }
 void Particle::randomize(const std::vector<ParticleType>& types)
 {
-    int typeID = rand() % types.size(); ///TODO: RANDOMIZER
+    int typeID = random_int(0, types.size() - 1);
     type = &types[typeID];
 
-    pos = {0, 0}; /// TODO: RANDOMIZER
-
-    int range = (univRad - getRadius()) * 20 + 1;
-    double x = rand() % range / 10.0 - univRad + getRadius();
-    double y = rand() % range / 10.0 - univRad + getRadius();
+    double x = random_double(getRadius() - univRad, univRad - getRadius());
+    double y = random_double(getRadius() - univRad, univRad - getRadius());
     pos = {x, y};
 
     vel = {0, 0};

@@ -1,6 +1,7 @@
 #ifndef DRAW_H_INCLUDED
 #define DRAW_H_INCLUDED
 
+#include "window_functions.h"
 #include "particle_system.h"
 
 #include <GLFW/glfw3.h>

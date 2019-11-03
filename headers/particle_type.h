@@ -5,11 +5,10 @@
 
 struct ParticleType
 {
-    static void resetIDs();
     double mass; // kg
     double radius; // m
     Color color;
-    ParticleType();
+    ParticleType(int ID);
     int getID() const;
     void randomize();
 private:

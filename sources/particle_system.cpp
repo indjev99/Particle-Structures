@@ -41,12 +41,11 @@ void ParticleSystem::randomize(int numParticles, int numTypes)
 {
     this->numParticles = numParticles;
     this->numTypes = numTypes;
-    ParticleType::resetIDs();
     types.clear();
     interactions.clear();
     for (int i = 0; i < numTypes; ++i)
     {
-        types.push_back(ParticleType());
+        types.push_back(ParticleType(i));
     }
     interactions.resize(numTypes);
     for (int i = 0; i < numTypes; ++i)

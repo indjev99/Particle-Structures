@@ -1,5 +1,6 @@
 #include "../headers/window_functions.h"
 #include "../headers/run.h"
+#include "../headers/randomizer.h"
 
 #include <iostream>
 #include <stdlib.h>

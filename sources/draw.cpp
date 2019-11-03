@@ -3,9 +3,9 @@
 #include "../headers/settings.h"
 
 #include <math.h>
+#define PI 3.14159265359
 
-const double DEG2RAD = 0.01745339;
-const Color backColor = {1, 1, 1};
+const double DEG2RAD = PI / 180;
 
 void initDraw(GLFWwindow* w)
 {
