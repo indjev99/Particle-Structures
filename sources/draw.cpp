@@ -1,12 +1,11 @@
 #include "../headers/draw.h"
 #include "../headers/window_size.h"
+#include "../headers/settings.h"
 
 #include<math.h>
 
 const double DEG2RAD = 0.0174533;
 const Color backColor = {1, 1, 1};
-const double particleRadiusScale = 0.02;
-const double scale = 0.01;
 
 void initDraw(GLFWwindow* w)
 {
@@ -42,24 +41,26 @@ void drawCircle(const Vec2D& pos, double radius)
 }
 void drawParticle(const Particle& particle)
 {
-    double newScale = ORIGINAL_WINDOWS_HEIGHT / WINDOWS_HEIGHT;
+    double resizeScale = std::min(1.0, 1.0 * windowWidth / windowHeight);
 
     const Color& color = particle.getType().color;
     double mass = particle.getType().mass;
-    double radius = sqrt(fabs(mass)) * particleRadiusScale;
+    double radius = particle.getType().radius;
 
     glColor3f(color.r, color.g, color.b);
-    drawCircle(particle.getPos() * scale, radius);
+    drawCircle(particle.getPos() / univRad * resizeScale, radius * resizeScale);
 
     if (mass < 0)
     {
+        radius *= 0.8;
+
         glColor3f(backColor.r, backColor.g, backColor.b);
-        drawCircle(particle.getPos() * scale, radius * 0.8);
+        drawCircle(particle.getPos() / univRad * resizeScale, radius * resizeScale);
     }
 }
 void drawBackground(GLFWwindow* w)
 {
-    double widthHeightRatio = 1.0 * WINDOWS_WIDTH / WINDOWS_HEIGHT;
+    double widthHeightRatio = 1.0 * windowWidth / windowHeight;
 
     glColor3f(backColor.r, backColor.g, backColor.b);
 

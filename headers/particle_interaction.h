@@ -7,8 +7,9 @@ struct ParticleInteraction
     double eval(double dist) const;
     void randomize();
 private:
-    double quad, lin;
-    void calcCoeffs(double dist);
+    double eqDist, strength;  // m, N
+    double lin, quad; // N * m, N * m^2
+    void calcCoeffs();
 };
 
 #endif // PARTICLE_INTERACTION_H_INCLUDED

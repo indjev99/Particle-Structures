@@ -1,8 +1,8 @@
 #include "../headers/particle_system.h"
 
-ParticleSystem::ParticleSystem(int n, int t) : n{n}, t{t}
+ParticleSystem::ParticleSystem(int numParticles, int numTypes)
 {
-    randomize(n, t);
+    randomize(numParticles, numTypes);
 }
 const std::vector<Particle>& ParticleSystem::getParticles() const
 {
@@ -10,53 +10,53 @@ const std::vector<Particle>& ParticleSystem::getParticles() const
 }
 void ParticleSystem::step(double timeDelta)
 {
-    for (int i = 0; i < n; ++i)
-    {;
-        for (int j = 0; j < n; ++j)
+    for (int i = 0; i < numParticles; ++i)
+    {
+        for (int j = 0; j < numParticles; ++j)
         {
             if (i == j) continue;
-            int id1 = particles[i].getType().getID();
-            int id2 = particles[j].getType().getID();
-            Vec2D diff = particles[i].getPos() - particles[j].getPos();
+            int id1 = particles[i].getTypeID();
+            int id2 = particles[j].getTypeID();
+            Vec2D diff = particles[j].getPos() - particles[i].getPos();
             double dist = diff.length();
             Vec2D force = diff / dist * interactions[id1][id2].eval(dist);
             particles[i].addForce(force);
         }
     }
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < numParticles; ++i)
     {
         particles[i].step(timeDelta);
     }
 }
-void ParticleSystem::randomize(int n, int t)
+void ParticleSystem::randomizeParticles(int numParticles)
 {
-    resetIDs();
-    types.clear();
-    interactions.clear();
+    this->numParticles = numParticles;
     particles.clear();
-
-    for (int i = 0; i < t; ++i)
-    {
-        types.push_back(ParticleType());
-    }
-    interactions.resize(t);
-    for (int i = 0; i < t; ++i)
-    {
-        for (int j = 0; j < t; ++j)
-        {
-            if (i <= j)
-            {
-                interactions[i].push_back(ParticleInteraction());
-            }
-            else
-            {
-                interactions[i].push_back(interactions[j][i]);
-            }
-        }
-    }
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < numParticles; ++i)
     {
         particles.push_back(Particle(types));
     }
+}
+void ParticleSystem::randomize(int numParticles, int numTypes)
+{
+    this->numParticles = numParticles;
+    this->numTypes = numTypes;
+    ParticleType::resetIDs();
+    types.clear();
+    interactions.clear();
+    for (int i = 0; i < numTypes; ++i)
+    {
+        types.push_back(ParticleType());
+    }
+    interactions.resize(numTypes);
+    for (int i = 0; i < numTypes; ++i)
+    {
+        for (int j = 0; j < numTypes; ++j)
+        {
+            if (i <= j) interactions[i].push_back(ParticleInteraction());
+            else interactions[i].push_back(interactions[j][i]);
+        }
+    }
+    randomizeParticles(numParticles);
 }
 

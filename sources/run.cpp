@@ -6,8 +6,8 @@
 #include<stdlib.h>
 #include<time.h>
 
-int n = 120;
-int t = 8;
+int numParticles = 120;
+int numTypes = 8;
 
 int timeResolution = 10;
 
@@ -15,20 +15,25 @@ void run(GLFWwindow* w)
 {
     srand(time(0));
 
-    ParticleSystem system(n, t);
+    bool paused = false;
+
+    ParticleSystem system(numParticles, numTypes);
     while (!glfwWindowShouldClose(w))
     {
-        for (int i = 0; i < timeResolution; ++i)
+        if (!paused)
         {
-            system.step(1.0 / timeResolution);
+            for (int i = 0; i < timeResolution; ++i)
+            {
+                system.step(1.0 / timeResolution);
+            }
         }
         drawParticleSystem(w, system);
         glfwPollEvents();
-        if (pressed)
-        {
-            pressed = 0;
-            system.randomize(n, t);
-        }
+        if (keyPress == 1) paused = !paused;
+        if (keyPress == 2) system.randomizeParticles(numParticles);
+        if (keyPress == 3) system.randomize(numParticles, numTypes);
+        keyPress = 0;
+        mouseClick = 0;
     }
 
     /*

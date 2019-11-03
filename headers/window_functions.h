@@ -1,12 +1,14 @@
 #ifndef WINDOW_FUNCTIONS_H_INCLUDED
 #define WINDOW_FUNCTIONS_H_INCLUDED
 
+#include "vec2d.h"
+
 #include<string>
 #include<GLFW/glfw3.h>
 
-extern double mxpos;
-extern double mypos;
-extern int pressed;
+extern int keyPress;
+extern int mouseClick;
+extern Vec2D mousePos;
 
 std::string setErrorCallback();
 std::string initializeGLFW();

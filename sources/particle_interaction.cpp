@@ -8,17 +8,16 @@ ParticleInteraction::ParticleInteraction()
 }
 double ParticleInteraction::eval(double dist) const
 {
-    return quad / (dist * dist) - lin / dist;
+    return lin / dist - quad / (dist * dist);
 }
 void ParticleInteraction::randomize()
 {
-    double neutralDist = (rand() % 500) / 10.0 + 10; /// TODO: RANDOMIZER
-    calcCoeffs(neutralDist);
+    eqDist = (rand() % 500) / 10.0 + 10; /// TODO: RANDOMIZER
+    strength = 1 / eqDist / eqDist; /// TODO?: RANDOMIZER
+    calcCoeffs();
 }
-void ParticleInteraction::calcCoeffs(double neutralDist)
+void ParticleInteraction::calcCoeffs()
 {
-    double k = 1 / neutralDist;
-    double norm = 4 / k * k;
-    quad = norm;
-    lin = norm * k;
+    lin = 4 * strength * eqDist;
+    quad = 4 * strength * eqDist * eqDist;
 }

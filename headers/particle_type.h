@@ -5,7 +5,9 @@
 
 struct ParticleType
 {
-    double mass;
+    static void resetIDs();
+    double mass; // kg
+    double radius; // m
     Color color;
     ParticleType();
     int getID() const;
@@ -13,7 +15,5 @@ struct ParticleType
 private:
     int ID;
 };
-
-void resetIDs();
 
 #endif // PARTICLE_TYPE_H_INCLUDED

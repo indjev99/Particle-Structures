@@ -53,6 +53,7 @@
 		<Unit filename="headers/particle_system.h" />
 		<Unit filename="headers/particle_type.h" />
 		<Unit filename="headers/run.h" />
+		<Unit filename="headers/settings.h" />
 		<Unit filename="headers/vec2d.h" />
 		<Unit filename="headers/window_functions.h" />
 		<Unit filename="headers/window_size.h" />
@@ -63,9 +64,9 @@
 		<Unit filename="sources/particle_system.cpp" />
 		<Unit filename="sources/particle_type.cpp" />
 		<Unit filename="sources/run.cpp" />
+		<Unit filename="sources/settings.cpp" />
 		<Unit filename="sources/vec2d.cpp" />
 		<Unit filename="sources/window_functions.cpp" />
-		<Unit filename="sources/window_size.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

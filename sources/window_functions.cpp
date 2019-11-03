@@ -1,43 +1,46 @@
-#include "../headers/window_size.h"
 #include "../headers/window_functions.h"
+#include "../headers/window_size.h"
 #include "../headers/draw.h"
 
 #include<iostream>
 #include<GLFW/glfw3.h>
 
-double mxpos=0;
-double mypos=0;
-int pressed=0;
+const int START_WINDOW_SIZE = 720;
 
-void error_callback(int error, const char* description)
+int windowWidth = START_WINDOW_SIZE;
+int windowHeight = START_WINDOW_SIZE;
+
+int keyPress = 0;
+int mouseClick = 0;
+Vec2D mousePos = {0, 0};
+
+void errorCallback(int error, const char* description)
 {
-    std::cerr<<error<<": "<<description<<std::endl;
+    std::cerr << error << ": " << description << std::endl;
 }
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) glfwSetWindowShouldClose(window, 1);
-    if (key == GLFW_KEY_SPACE && action == GLFW_PRESS) pressed = 1;
+    if (key == GLFW_KEY_SPACE && action == GLFW_PRESS) keyPress = 1;
+    if (key == GLFW_KEY_R && action == GLFW_PRESS) keyPress = 2;
+    if (key == GLFW_KEY_G && action == GLFW_PRESS) keyPress = 3;
 }
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
     if (action == GLFW_PRESS)
     {
-        pressed = button;
-        glfwGetCursorPos(window, &mxpos, &mypos);
-        mxpos = mxpos * 2 - WINDOWS_WIDTH;
-        mypos = -mypos * 2 + WINDOWS_HEIGHT;
-        mxpos /= ORIGINAL_WINDOWS_HEIGHT;
-        mypos /= ORIGINAL_WINDOWS_HEIGHT;
+        mouseClick = button + 1;
+        glfwGetCursorPos(window, &mousePos.x, &mousePos.y);
     }
 }
-void window_size_callback(GLFWwindow* window, int width, int height)
+void windowSizeCallback(GLFWwindow* window, int width, int height)
 {
-    WINDOWS_WIDTH = width;
-    WINDOWS_HEIGHT = height;
+    windowWidth = width;
+    windowHeight = height;
 }
 std::string setErrorCallback()
 {
-    glfwSetErrorCallback(error_callback);
+    glfwSetErrorCallback(errorCallback);
     return "GLFW error callback set successfully.";
 }
 std::string initializeGLFW()
@@ -48,16 +51,16 @@ std::string initializeGLFW()
 }
 std::string createWindow(GLFWwindow*& w)
 {
-    w = glfwCreateWindow(WINDOWS_WIDTH, WINDOWS_HEIGHT, "Particles", NULL, NULL);
+    w = glfwCreateWindow(windowWidth, windowHeight, "Particles", NULL, NULL);
     if (!w)
         return "Unable to open window.";
     return "Window created successfully.";
 }
 std::string setWindowCallbacks(GLFWwindow* w)
 {
-    glfwSetKeyCallback(w, key_callback);
-    glfwSetMouseButtonCallback(w, mouse_button_callback);
-    glfwSetWindowSizeCallback(w, window_size_callback);
+    glfwSetKeyCallback(w, keyCallback);
+    glfwSetMouseButtonCallback(w, mouseButtonCallback);
+    glfwSetWindowSizeCallback(w, windowSizeCallback);
     return "Window callbacks set successfully.";
 }
 void stopGraphics(GLFWwindow* w)

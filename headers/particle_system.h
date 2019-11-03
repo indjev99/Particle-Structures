@@ -8,12 +8,13 @@
 
 struct ParticleSystem
 {
-    ParticleSystem(int n, int t);
+    ParticleSystem(int numParticles, int numTypes);
     const std::vector<Particle>& getParticles() const;
     void step(double timeDelta);
+    void randomizeParticles(int n);
     void randomize(int n, int t);
 private:
-    int n, t;
+    int numParticles, numTypes;
     std::vector<ParticleType> types;
     std::vector<std::vector<ParticleInteraction>> interactions;
     std::vector<Particle> particles;
