@@ -1,10 +1,12 @@
 #ifndef PARTICLE_INTERACTION_H_INCLUDED
 #define PARTICLE_INTERACTION_H_INCLUDED
 
+#include "vec2d.h"
+
 struct ParticleInteraction
 {
     ParticleInteraction();
-    double eval(double dist) const;
+    Vec2D eval(const Vec2D& dist) const;
     void randomize();
 private:
     double eqDist, strength;  // m, N

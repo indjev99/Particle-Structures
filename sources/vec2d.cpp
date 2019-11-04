@@ -4,7 +4,7 @@
 
 const Vec2D zero2D = {0, 0};
 
-double Vec2D::length()
+double Vec2D::length() const
 {
     return sqrt(x * x + y * y);
 }

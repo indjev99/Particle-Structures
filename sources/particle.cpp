@@ -33,9 +33,13 @@ const Vec2D& Particle::getPos() const
 {
     return pos;
 }
-void Particle::addForce(const Vec2D force)
+void Particle::addForce(const Vec2D& force)
 {
     acc += force / getMass();
+}
+void Particle::addForceGrad(const Vec2D& forceGrad)
+{
+    jrk += forceGrad / getMass();
 }
 double sign(double x)
 {
@@ -52,11 +56,15 @@ void bounce(double& pos, double& vel, double bound)
 void Particle::step(double timeDelta)
 {
     if (locked) return;
-    double currDrag = dragCoeff * 2 * getRadius() / getMass();
-    acc += -vel * currDrag;
-    pos += vel * timeDelta + acc * timeDelta * timeDelta / 2;
-    vel += acc * timeDelta - acc * currDrag * timeDelta * timeDelta / 2;
+
+    double currDrag = -dragCoeff * 2 * getRadius();
+    addForce(vel * currDrag);
+    addForceGrad(acc * currDrag);
+
+    pos += vel * timeDelta + acc * timeDelta * timeDelta / 2 + jrk * timeDelta * timeDelta * timeDelta / 3;
+    vel += acc * timeDelta + jrk * timeDelta * timeDelta / 2;
     acc = zero2D;
+    jrk = zero2D;
 
     bounce(pos.x, vel.x, univRad - getRadius());
     bounce(pos.y, vel.y, univRad - getRadius());
@@ -74,6 +82,7 @@ void Particle::randomizePos()
     pos = {x, y};
     vel = zero2D;
     acc = zero2D;
+    jrk = zero2D;
     locked = false;
 }
 void bound(double& pos, double bound)

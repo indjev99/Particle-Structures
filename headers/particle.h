@@ -15,10 +15,11 @@ struct Particle
     double getRadius() const;
     const Color& getColor() const;
     const Vec2D& getPos() const;
-    void addForce(const Vec2D force);
+    void addForce(const Vec2D& force);
+    void addForceGrad(const Vec2D& forceGrad);
     void step(double timeDelta);
-    void updatePos(const Vec2D& newPos, double timeDelta);
     void randomize(const std::vector<ParticleType>& types);
+    void updatePos(const Vec2D& newPos, double timeDelta);
     void lock();
     void unlock();
 private:
@@ -27,6 +28,7 @@ private:
     Vec2D pos; // m
     Vec2D vel; // m / s
     Vec2D acc; // m / s^2
+    Vec2D jrk; // m / s^3
     bool locked;
 };
 

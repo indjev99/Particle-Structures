@@ -8,9 +8,10 @@ ParticleInteraction::ParticleInteraction()
 {
     randomize();
 }
-double ParticleInteraction::eval(double dist) const
+Vec2D ParticleInteraction::eval(const Vec2D& dist) const
 {
-    return lin / dist - quad / (dist * dist);
+    double len = dist.length();
+    return dist * ((lin - quad / len) / len / len);
 }
 void ParticleInteraction::randomize()
 {

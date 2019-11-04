@@ -4,7 +4,7 @@
 struct Vec2D
 {
     double x, y;
-    double length();
+    double length() const;
 };
 
 extern const Vec2D zero2D;

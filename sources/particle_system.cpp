@@ -18,9 +18,8 @@ void ParticleSystem::step(double timeDelta)
             if (i == j) continue;
             int id1 = particles[i].getTypeID();
             int id2 = particles[j].getTypeID();
-            Vec2D offset = particles[j].getPos() - particles[i].getPos();
-            double dist = offset.length();
-            Vec2D force = offset / dist * interactions[id1][id2].eval(dist);
+            Vec2D dist = particles[j].getPos() - particles[i].getPos();
+            Vec2D force = interactions[id1][id2].eval(dist);
             particles[i].addForce(force);
         }
     }
