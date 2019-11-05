@@ -17,7 +17,7 @@ extern double particleDensity; // kg / m^2
 extern double minMass; // kg
 extern double maxMass; // kg
 
-extern bool enableDecay;
+extern bool enableDecay; // not physical
 
 extern int minDecayParticles; // dimensionless
 extern int maxDecayParticles; // dimensionless
@@ -25,13 +25,14 @@ extern int maxDecayParticles; // dimensionless
 extern double minMeanLifetime; // s
 extern double maxMeanLifetime; // s
 
-extern bool symmetricInteractions; // not physical
+extern bool asymmetricInteractions; // not physical
 
 extern double minEqDist; // m
 extern double maxEqDist; // m
 
-extern double baseStrength; // N
 extern double minLogStrength; // dimensionless
 extern double maxLogStrength; // dimensionless
+
+extern double normalizedMaxStrength; // N
 
 #endif // SETTINGS_H_INCLUDED

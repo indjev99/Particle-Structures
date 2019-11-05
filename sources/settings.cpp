@@ -17,16 +17,17 @@ double maxMass = 5;
 bool enableDecay = false;
 
 int minDecayParticles = 0;
-int maxDecayParticles = 2;
+int maxDecayParticles = 3;
 
-double minMeanLifetime = 20 * 60;
-double maxMeanLifetime = 180 * 60;
+double minMeanLifetime = 2000;
+double maxMeanLifetime = 10000;
 
-bool symmetricInteractions = true;
+bool asymmetricInteractions = false;
 
 double minEqDist = 10;
 double maxEqDist = 60;
 
-double baseStrength = 0.0015;
 double minLogStrength = -3.5;
 double maxLogStrength = -0.5;
+
+double normalizedMaxStrength = 0.015;

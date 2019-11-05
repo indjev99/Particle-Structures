@@ -40,6 +40,6 @@ ParticleDecayResult ParticleDecay::doDecay(const Particle& particle)
 }
 ParticleDecayResult ParticleDecay::step(const Particle& particle, double timeDelta)
 {
-    if (!particle.isLocked() && shouldDecay(timeDelta)) return doDecay(particle);
+    if (shouldDecay(timeDelta)) return doDecay(particle);
     else return noDecay;
 }

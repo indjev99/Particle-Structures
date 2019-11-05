@@ -8,14 +8,15 @@
 
 struct ParticleController
 {
-    ParticleController(int& numParticles, std::vector<Particle>& particle, const std::vector<ParticleType>& types);
+    ParticleController(int& numParticles, std::vector<Particle>& particle, int& locked, const std::vector<ParticleType>& types);
+
     void step(int mouseClick, const Vec2D& mousePos, bool mouseMoved, double timeDelta);
 
 private:
     int& numParticles;
     std::vector<Particle>& particles;
     const std::vector<ParticleType>& types;
-    int dragging;
+    int& dragging;
     double sinceLastDrag;
     Vec2D draggingOffset;
     int copied;

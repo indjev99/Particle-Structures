@@ -4,27 +4,59 @@
 #include "../headers/settings.h"
 #include "../headers/randomizer.h"
 
-#include <time.h>
-#ifdef DEBUG
-    #include <iostream>
-#endif
-
 #include <iostream>
-void changeSettings()
+#include <time.h>
+
+void changeParameters()
 {
     std::cout << "Please enter new values (the current ones are shown in brackets)"<<std::endl;
-    std::cout << "Number of particles ("<<numParticles<<"): ";
-    std::cin >> numParticles;
-    std::cout << "Number of types ("<<numTypes<<"): ";
-    std::cin >> numTypes;
-    std::cout << "Min force range ("<<minEqDist<<"): ";
-    std::cin >> minEqDist;
-    std::cout << "Max force range ("<<maxEqDist<<"): ";
-    std::cin >> maxEqDist;
-    std::cout << "Min force strength scale ("<<minLogStrength<<"): ";
-    std::cin >> minLogStrength;
-    std::cout << "Max force strength scale ("<<maxLogStrength<<"): ";
-    std::cin >> maxLogStrength;
+
+    bool toEdit;
+
+    std::cout << "Edit number of particles/types? (0/1): ";
+    std::cin >> toEdit;
+    if (toEdit)
+    {
+        std::cout << "Number of particles ("<<numParticles<<"): ";
+        std::cin >> numParticles;
+        std::cout << "Number of types ("<<numTypes<<"): ";
+        std::cin >> numTypes;
+    }
+
+    std::cout << "Edit the interaction parameters? (0/1): ";
+    std::cin >> toEdit;
+    if (toEdit)
+    {
+        std::cout << "Min force range ("<<minEqDist<<"): ";
+        std::cin >> minEqDist;
+        std::cout << "Max force range ("<<maxEqDist<<"): ";
+        std::cin >> maxEqDist;
+        std::cout << "Min force strength scale ("<<minLogStrength<<"): ";
+        std::cin >> minLogStrength;
+        std::cout << "Max force strength scale ("<<maxLogStrength<<"): ";
+        std::cin >> maxLogStrength;
+        std::cout << "Enable asymmetric forces ("<<asymmetricInteractions<<"): ";
+        std::cin >> asymmetricInteractions;
+    }
+
+    std::cout << "Edit the decay parameters? (0/1): ";
+    std::cin >> toEdit;
+    if (toEdit)
+    {
+        std::cout << "Enable particle decay ("<<enableDecay<<"): ";
+        std::cin >> enableDecay;
+    }
+    if (toEdit && enableDecay)
+    {
+        std::cout << "Min decay particles ("<<minDecayParticles<<"): ";
+        std::cin >> minDecayParticles;
+        std::cout << "Max decay particles ("<<maxDecayParticles<<"): ";
+        std::cin >> maxDecayParticles;
+        std::cout << "Min mean lifetime ("<<minMeanLifetime<<"): ";
+        std::cin >> minMeanLifetime;
+        std::cout << "Max mean lifetime ("<<maxMeanLifetime<<"): ";
+        std::cin >> maxMeanLifetime;
+    }
 }
 void changeTimeResolution()
 {
@@ -36,7 +68,7 @@ void changeTimeResolution()
 void help()
 {
     std::cout << "Space - Pause\nR - Respawn new particles\nG - Generate new rules\n" <<
-                 "S - Change some of the basic settings (this will generate new rules)\n" <<
+                 "P - Change some of the basic parameters (will be applied after next generation)\n" <<
                  "T - Change the time resolution of the simulation\n" <<
                  "Left click a particle - grab it\n" <<
                  "Left click the air - create a new particle and then grab it\n" <<
@@ -71,7 +103,7 @@ void run(GLFWwindow* window)
         if (keyPress == 1) paused = !paused;
         if (keyPress == 2) system.randomizeParticles(numParticles);
         if (keyPress == 3) system.randomize(numParticles, numTypes);
-        if (keyPress == 4) { changeSettings(); system.randomize(numParticles, numTypes); }
+        if (keyPress == 4) changeParameters();
         if (keyPress == 5) changeTimeResolution();
         controller.step(mouseClick, mousePos, mouseMoved, 1);
         keyPress = 0;

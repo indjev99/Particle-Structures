@@ -25,6 +25,8 @@ private:
     std::vector<std::vector<ParticleInteraction>> interactions;
     std::vector<ParticleDecay> decays;
     std::vector<Particle> particles;
+
+    int locked;
 };
 
 #endif // PARTICLE_SYSTEM_H_INCLUDED

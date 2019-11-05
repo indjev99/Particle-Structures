@@ -1,10 +1,11 @@
 #include "../headers/particle_controller.h"
+#include "../headers/randomizer.h"
 
-ParticleController::ParticleController(int& numParticles, std::vector<Particle>& particles, const std::vector<ParticleType>& types):
+ParticleController::ParticleController(int& numParticles, std::vector<Particle>& particles, int& locked, const std::vector<ParticleType>& types):
     numParticles(numParticles),
     particles(particles),
     types(types),
-    dragging(-1),
+    dragging(locked),
     copied(-1)
 {}
 
@@ -40,14 +41,13 @@ void ParticleController::step(int mouseClick, const Vec2D& mousePos, bool mouseM
         case 1:
             if (clicked == -1)
             {
-                if (copied == -1) particles.push_back(Particle(types));
+                if (copied == -1) particles.push_back(Particle(selectRandom(types)));
                 else particles.push_back(Particle(types[copied]));
                 ++numParticles;
                 clicked = numParticles - 1;
                 draggingOffset = zero2D;
             }
             dragging = clicked;
-            particles[dragging].lock();
             particles[dragging].updatePos(mousePos + draggingOffset, 1);
             sinceLastDrag = 0;
             break;
@@ -64,7 +64,6 @@ void ParticleController::step(int mouseClick, const Vec2D& mousePos, bool mouseM
             else copied = particles[clicked].getTypeID();
             break;
         case -1:
-            if (dragging >= 0) particles[dragging].unlock();
             dragging = -1;
             break;
         default:

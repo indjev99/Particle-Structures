@@ -26,7 +26,7 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
     if (key == GLFW_KEY_SPACE && action == GLFW_PRESS) keyPress = 1;
     if (key == GLFW_KEY_R && action == GLFW_PRESS) keyPress = 2;
     if (key == GLFW_KEY_G && action == GLFW_PRESS) keyPress = 3;
-    if (key == GLFW_KEY_S && action == GLFW_PRESS) keyPress = 4;
+    if (key == GLFW_KEY_P && action == GLFW_PRESS) keyPress = 4;
     if (key == GLFW_KEY_T && action == GLFW_PRESS) keyPress = 5;
 }
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)

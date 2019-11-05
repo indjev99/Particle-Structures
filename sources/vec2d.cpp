@@ -3,7 +3,6 @@
 
 const Vec2D zero2D = Vec2D(0, 0);
 
-<<<<<<< HEAD
 Vec2D::Vec2D() {}
 Vec2D::Vec2D(double angle):
     x(cos(angle)),
@@ -13,10 +12,7 @@ Vec2D::Vec2D(double x, double y):
     x(x),
     y(y)
 {}
-=======
-const Vec2D zero2D = {0, 0};
 
->>>>>>> 66ade8357150f8989747cf9112c63a0008b1786b
 double Vec2D::length() const
 {
     return sqrt(x * x + y * y);
