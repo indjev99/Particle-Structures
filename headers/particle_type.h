@@ -6,11 +6,13 @@
 struct ParticleType
 {
     ParticleType(int ID);
+    void randomize();
+
     int getID() const;
     double getMass() const;
     double  getRadius() const;
     const Color& getColor() const;
-    void randomize();
+
 private:
     int ID;
     double mass; // kg

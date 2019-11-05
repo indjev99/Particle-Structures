@@ -9,7 +9,8 @@
 struct ParticleController
 {
     ParticleController(int& numParticles, std::vector<Particle>& particle, const std::vector<ParticleType>& types);
-    void processInput(int mouseClick, const Vec2D& mousePos, bool mouseMoved, double timeDelta);
+    void step(int mouseClick, const Vec2D& mousePos, bool mouseMoved, double timeDelta);
+
 private:
     int& numParticles;
     std::vector<Particle>& particles;

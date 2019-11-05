@@ -1,6 +1,6 @@
 #include "../headers/settings.h"
 
-Color backColor = {1, 1, 1};
+Color backColor = Color(1, 1, 1);
 
 int timeResolution = 15;
 
@@ -13,6 +13,14 @@ double particleDensity = 0.08;
 
 double minMass = 0.5;
 double maxMass = 5;
+
+bool enableDecay = false;
+
+int minDecayParticles = 0;
+int maxDecayParticles = 2;
+
+double minMeanLifetime = 20 * 60;
+double maxMeanLifetime = 180 * 60;
 
 bool symmetricInteractions = true;
 

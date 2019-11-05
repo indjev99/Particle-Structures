@@ -42,7 +42,7 @@ void mousePositionCallback(GLFWwindow* window, double xpos, double ypos)
     xpos -= windowWidth / 2.0;
     ypos -= windowHeight / 2.0;;
     double scale = 2.0 * univRad / std::min(windowWidth, windowHeight);
-    mousePos = {xpos * scale, -ypos * scale};
+    mousePos = Vec2D(xpos * scale, -ypos * scale);
 }
 void windowSizeCallback(GLFWwindow* window, int width, int height)
 {

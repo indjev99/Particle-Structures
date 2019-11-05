@@ -54,12 +54,13 @@ void run(GLFWwindow* window)
         time_t start = clock();
         int cnt = 0;
     #endif
-    seed_randomizer(time(0));
+    seeRandomizer(time(0));
     bool paused = false;
     ParticleSystem system(numParticles, numTypes);
     ParticleController controller = system.getController();
     while (!glfwWindowShouldClose(window))
     {
+        drawParticleSystem(window, system);
         double timeDelta = 1.0 / timeResolution;
         for (int i = 0; i < timeResolution; ++i)
         {
@@ -72,11 +73,10 @@ void run(GLFWwindow* window)
         if (keyPress == 3) system.randomize(numParticles, numTypes);
         if (keyPress == 4) { changeSettings(); system.randomize(numParticles, numTypes); }
         if (keyPress == 5) changeTimeResolution();
-        controller.processInput(mouseClick, mousePos, mouseMoved, 1);
+        controller.step(mouseClick, mousePos, mouseMoved, 1);
         keyPress = 0;
         mouseClick = 0;
         mouseMoved = false;
-        drawParticleSystem(window, system);
         #ifdef DEBUG
             ++cnt;
             if (cnt % 60 == 0)

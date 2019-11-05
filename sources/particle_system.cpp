@@ -11,6 +11,27 @@ const std::vector<Particle>& ParticleSystem::getParticles() const
 }
 void ParticleSystem::step(double timeDelta)
 {
+    if (enableDecay)
+    {
+        int newParticles = 0;
+        for (int i = 0; i < numParticles; ++i)
+        {
+            ParticleDecayResult result = decays[particles[i].getTypeID()].step(particles[i], timeDelta);
+            if (result.didDecay)
+            {
+                particles.erase(particles.begin() + i);
+                particles.insert(particles.end(), result.particles.begin(), result.particles.end());
+                newParticles += result.particles.size();
+                --numParticles;
+                --i;
+            }
+        }
+        numParticles += newParticles;
+    }
+    for (int i = 0; i < numParticles; ++i)
+    {
+        particles[i].clearForces();
+    }
     for (int i = 0; i < numParticles; ++i)
     {
         for (int j = 0; j < numParticles; ++j)
@@ -43,6 +64,7 @@ void ParticleSystem::randomize(int numParticles, int numTypes)
     this->numTypes = numTypes;
     types.clear();
     interactions.clear();
+    decays.clear();
     for (int i = 0; i < numTypes; ++i)
     {
         types.push_back(ParticleType(i));
@@ -55,6 +77,10 @@ void ParticleSystem::randomize(int numParticles, int numTypes)
             if (symmetricInteractions && j < i) interactions[i].push_back(interactions[j][i]);
             else interactions[i].push_back(ParticleInteraction());
         }
+    }
+    for (int i = 0; i < numTypes; ++i)
+    {
+        decays.push_back(ParticleDecay(types));
     }
     randomizeParticles(numParticles);
 }

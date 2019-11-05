@@ -3,8 +3,17 @@
 
 struct Vec2D
 {
-    double x, y;
+    Vec2D();
+    Vec2D(double angle);
+    Vec2D(double x, double y);
+
     double length() const;
+
+    double x, y;
+<<<<<<< HEAD
+=======
+    double length() const;
+>>>>>>> 66ade8357150f8989747cf9112c63a0008b1786b
 };
 
 extern const Vec2D zero2D;

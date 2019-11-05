@@ -49,8 +49,11 @@
 		</Linker>
 		<Unit filename="headers/color.h" />
 		<Unit filename="headers/draw.h" />
+		<Unit filename="headers/my_math.h" />
 		<Unit filename="headers/particle.h" />
 		<Unit filename="headers/particle_controller.h" />
+		<Unit filename="headers/particle_decay.h" />
+		<Unit filename="headers/particle_decay_result.h" />
 		<Unit filename="headers/particle_interaction.h" />
 		<Unit filename="headers/particle_system.h" />
 		<Unit filename="headers/particle_type.h" />
@@ -60,10 +63,14 @@
 		<Unit filename="headers/vec2d.h" />
 		<Unit filename="headers/window_functions.h" />
 		<Unit filename="headers/window_size.h" />
+		<Unit filename="sources/color.cpp" />
 		<Unit filename="sources/draw.cpp" />
 		<Unit filename="sources/main.cpp" />
+		<Unit filename="sources/my_math.cpp" />
 		<Unit filename="sources/particle.cpp" />
 		<Unit filename="sources/particle_controller.cpp" />
+		<Unit filename="sources/particle_decay.cpp" />
+		<Unit filename="sources/particle_decay_result.cpp" />
 		<Unit filename="sources/particle_interaction.cpp" />
 		<Unit filename="sources/particle_system.cpp" />
 		<Unit filename="sources/particle_type.cpp" />

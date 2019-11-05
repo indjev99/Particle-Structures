@@ -8,7 +8,7 @@ ParticleController::ParticleController(int& numParticles, std::vector<Particle>&
     copied(-1)
 {}
 
-void ParticleController::processInput(int mouseClick, const Vec2D& mousePos, bool mouseMoved, double timeDelta)
+void ParticleController::step(int mouseClick, const Vec2D& mousePos, bool mouseMoved, double timeDelta)
 {
     sinceLastDrag += timeDelta;
     if ((mouseMoved || mouseClick == -1) && dragging >= 0)
@@ -40,7 +40,7 @@ void ParticleController::processInput(int mouseClick, const Vec2D& mousePos, boo
         case 1:
             if (clicked == -1)
             {
-                if (copied == -1) particles.push_back(Particle( types));
+                if (copied == -1) particles.push_back(Particle(types));
                 else particles.push_back(Particle(types[copied]));
                 ++numParticles;
                 clicked = numParticles - 1;

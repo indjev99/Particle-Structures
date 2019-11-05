@@ -1,8 +1,7 @@
 #include "../headers/particle_interaction.h"
 #include "../headers/settings.h"
 #include "../headers/randomizer.h"
-
-#include <math.h>
+#include "../headers/my_math.h"
 
 ParticleInteraction::ParticleInteraction()
 {
@@ -15,9 +14,9 @@ Vec2D ParticleInteraction::eval(const Vec2D& dist) const
 }
 void ParticleInteraction::randomize()
 {
-    eqDist = random_double(minEqDist, maxEqDist);
+    eqDist = randomDouble(minEqDist, maxEqDist);
     double base = eqDist * 2 / (minEqDist + maxEqDist);
-    double power = random_double(minLogStrength, maxLogStrength);
+    double power = randomDouble(minLogStrength, maxLogStrength);
     strength = baseStrength * pow(base, power);
     calcCoeffs();
 }

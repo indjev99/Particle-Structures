@@ -1,9 +1,7 @@
 #include "../headers/draw.h"
 #include "../headers/window_size.h"
 #include "../headers/settings.h"
-
-#include <math.h>
-#define PI 3.14159265359
+#include "../headers/my_math.h"
 
 const double DEG2RAD = PI / 180;
 
@@ -77,7 +75,8 @@ void drawParticleSystem(GLFWwindow* w, const ParticleSystem& particleSystem)
     drawBackground(w);
 
     const std::vector<Particle>& particles = particleSystem.getParticles();
-    for (size_t i = 0; i < particles.size(); ++i)
+    int numParticles = particles.size();
+    for (int i = 0; i < numParticles; ++i)
     {
         drawParticle(particles[i]);
     }

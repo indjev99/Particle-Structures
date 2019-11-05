@@ -1,9 +1,7 @@
 #include "../headers/particle_type.h"
 #include "../headers/settings.h"
 #include "../headers/randomizer.h"
-
-#include <math.h>
-#define PI 3.14159265359
+#include "../headers/my_math.h"
 
 ParticleType::ParticleType(int ID):
     ID(ID)
@@ -28,12 +26,12 @@ const Color& ParticleType::getColor() const
 }
 void ParticleType::randomize()
 {
-    mass = random_double(minMass, maxMass);
+    mass = randomDouble(minMass, maxMass);
     radius = sqrt(fabs(mass / (PI * particleDensity)));
 
-    double r = random_double(0, 1);
-    double g = random_double(0, 1);
-    double b = random_double(0, 1);
-    color = {r, g, b};
+    double r = randomDouble(0, 1);
+    double g = randomDouble(0, 1);
+    double b = randomDouble(0, 1);
+    color = Color(r, g, b);
 }
 
