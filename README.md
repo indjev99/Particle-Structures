@@ -27,6 +27,6 @@ Two further additions have been introduced:
 
 1. Asymmetric forces. We can toggle asymmetry of the forces which usually leads to particles chasing each other and thus moving the whole cluster of particles.
 
-2. Particle decay. Each particle type has a halflife/mean lifetime, when the particle decays it produces some number of other particles. Conservation of mas, conservation of energy and Galilean relativity are not currently followed (though conservation of momentum is).
+2. Particle decay. Each particle type has a halflife/mean lifetime, when the particle decays it produces some number of other particles. Conservation of mass, conservation of energy and Galilean relativity are not currently followed (though conservation of momentum is).
 
 This project uses the GLFW library and OpenGL.
