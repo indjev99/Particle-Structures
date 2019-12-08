@@ -25,12 +25,12 @@ void ParticleSystem::randomize(int numParticles, int numTypes)
     {
         for (int j = 0; j < numTypes; ++j)
         {
-            if (!asymmetricInteractions && j < i) interactions[i].push_back(interactions[j][i]);
+            if (!currSettings.asymmetricInteractions && j < i) interactions[i].push_back(interactions[j][i]);
             else interactions[i].push_back(ParticleInteraction());
             maxStrength = std::max(maxStrength, interactions[i][j].getStrength());
         }
     }
-    double scale = normalizedMaxStrength / maxStrength;
+    double scale = currSettings.normalizedMaxStrength / maxStrength;
     for (int i = 0; i < numTypes; ++i)
     {
         for (int j = 0; j < numTypes; ++j)
@@ -68,7 +68,7 @@ const std::vector<Particle>& ParticleSystem::getParticles() const
 
 void ParticleSystem::step(double timeDelta)
 {
-    if (enableDecay)
+    if (currSettings.enableDecay)
     {
         int newParticles = 0;
         for (int i = 0; i < numParticles; ++i)

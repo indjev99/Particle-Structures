@@ -10,8 +10,8 @@ ParticleDecay::ParticleDecay(const std::vector<ParticleType>& types):
 }
 void ParticleDecay::randomize()
 {
-    meanLife = randomDouble(minMeanLifetime, maxMeanLifetime);
-    numDecayParticles = randomInt(minDecayParticles, maxDecayParticles);
+    meanLife = randomDouble(currSettings.minMeanLifetime, currSettings.maxMeanLifetime);
+    numDecayParticles = randomInt(currSettings.minDecayParticles, currSettings.maxDecayParticles);
     for (int i = 0; i < numDecayParticles; ++i)
     {
         int typeID = randomInt(0, types.size() - 1);

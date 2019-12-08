@@ -28,6 +28,8 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
     if (key == GLFW_KEY_G && action == GLFW_PRESS) keyPress = 3;
     if (key == GLFW_KEY_P && action == GLFW_PRESS) keyPress = 4;
     if (key == GLFW_KEY_T && action == GLFW_PRESS) keyPress = 5;
+    if (key == GLFW_KEY_S && action == GLFW_PRESS) keyPress = 6;
+    if (key == GLFW_KEY_L && action == GLFW_PRESS) keyPress = 7;
 }
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
@@ -41,7 +43,7 @@ void mousePositionCallback(GLFWwindow* window, double xpos, double ypos)
     mouseMoved = true;
     xpos -= windowWidth / 2.0;
     ypos -= windowHeight / 2.0;;
-    double scale = 2.0 * univRad / std::min(windowWidth, windowHeight);
+    double scale = 2.0 * currSettings.univRad / std::min(windowWidth, windowHeight);
     mousePos = Vec2D(xpos * scale, -ypos * scale);
 }
 void windowSizeCallback(GLFWwindow* window, int width, int height)
@@ -56,15 +58,13 @@ std::string setErrorCallback()
 }
 std::string initializeGLFW()
 {
-    if (!glfwInit())
-        return "Unable to initialize GLFW.";
+    if (!glfwInit()) return "Unable to initialize GLFW.";
     return "GLFW initialized successfully.";
 }
 std::string createWindow(GLFWwindow*& w)
 {
-    w = glfwCreateWindow(windowWidth, windowHeight, "Particles", NULL, NULL);
-    if (!w)
-        return "Unable to open window.";
+    w = glfwCreateWindow(windowWidth, windowHeight, "Particle Structures", NULL, NULL);
+    if (!w) return "Unable to open window.";
     return "Window created successfully.";
 }
 std::string setWindowCallbacks(GLFWwindow* w)

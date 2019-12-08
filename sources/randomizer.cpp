@@ -6,9 +6,15 @@ long long randll()
 {
     return rand() * (RAND_MAX + 1ll) + rand();
 }
-void seeRandomizer(int seed)
+void seedRandomizer(int seed)
 {
     srand(seed);
+}
+int getRandomizerSeed()
+{
+    int seed = rand();
+    srand(seed);
+    return seed;
 }
 int randomInt(int from, int to)
 {

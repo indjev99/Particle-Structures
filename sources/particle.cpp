@@ -16,8 +16,8 @@ void Particle::randomize(const ParticleType& type)
 {
     this->type = &type;
 
-    double x = randomDouble(getRadius() - univRad, univRad - getRadius());
-    double y = randomDouble(getRadius() - univRad, univRad - getRadius());
+    double x = randomDouble(getRadius() - currSettings.univRad, currSettings.univRad - getRadius());
+    double y = randomDouble(getRadius() - currSettings.univRad, currSettings.univRad - getRadius());
     pos = Vec2D(x, y);
     vel = zero2D;
 }
@@ -71,15 +71,15 @@ void bounce(double& pos, double& vel, double bound)
 }
 void Particle::step(double timeDelta)
 {
-    double currDrag = -dragCoeff * 2 * getRadius();
+    double currDrag = -currSettings.dragCoeff * 2 * getRadius();
     addForce(vel * currDrag);
     addForceGrad(acc * currDrag);
 
     pos += vel * timeDelta + acc * timeDelta * timeDelta / 2 + jrk * timeDelta * timeDelta * timeDelta / 3;
     vel += acc * timeDelta + jrk * timeDelta * timeDelta / 2;
 
-    bounce(pos.x, vel.x, univRad - getRadius());
-    bounce(pos.y, vel.y, univRad - getRadius());
+    bounce(pos.x, vel.x, currSettings.univRad - getRadius());
+    bounce(pos.y, vel.y, currSettings.univRad - getRadius());
 }
 
 void bound(double& pos, double bound)
@@ -92,8 +92,8 @@ void bound(double& pos, double bound)
 void Particle::updatePos(const Vec2D& newPos, double timeDelta)
 {
     Vec2D boundNewPos = newPos;
-    bound(boundNewPos.x, univRad - getRadius());
-    bound(boundNewPos.y, univRad - getRadius());
+    bound(boundNewPos.x, currSettings.univRad - getRadius());
+    bound(boundNewPos.y, currSettings.univRad - getRadius());
     vel = (boundNewPos - pos) / timeDelta;
     pos = boundNewPos;
 }

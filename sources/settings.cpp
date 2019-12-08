@@ -1,8 +1,10 @@
 #include "../headers/settings.h"
 
-Color backColor = Color(1, 1, 1);
+Color Settings::backColor = Color(1, 1, 1);
+int Settings::timeResolution = 15;
+bool Settings::enableDecay = false;
 
-int timeResolution = 15;
+int seed = 0;
 
 int numParticles = 120;
 int numTypes = 8;
@@ -13,8 +15,6 @@ double particleDensity = 0.08;
 
 double minMass = 0.5;
 double maxMass = 5;
-
-bool enableDecay = false;
 
 int minDecayParticles = 0;
 int maxDecayParticles = 3;
@@ -31,3 +31,9 @@ double minLogStrength = -3.5;
 double maxLogStrength = -0.5;
 
 double normalizedMaxStrength = 0.015;
+
+Settings currSettings = {seed, numParticles, numTypes, univRad, dragCoeff, particleDensity,
+                        minMass, maxMass, minDecayParticles, maxDecayParticles,
+                        minMeanLifetime, maxMeanLifetime, asymmetricInteractions,
+                        minEqDist, maxEqDist, minLogStrength, maxLogStrength, normalizedMaxStrength};
+Settings lastSettings;

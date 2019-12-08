@@ -3,7 +3,8 @@
 
 #include <vector>
 
-void seeRandomizer(int seed);
+void seedRandomizer(int seed);
+int getRandomizerSeed();
 int randomInt(int from, int to);
 double randomDouble(double from, double to, double incr=0.001);
 template <class T>

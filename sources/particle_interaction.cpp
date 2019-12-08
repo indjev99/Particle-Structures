@@ -9,12 +9,12 @@ ParticleInteraction::ParticleInteraction()
 }
 void ParticleInteraction::randomize()
 {
-    eqDist = randomDouble(minEqDist, maxEqDist);
+    eqDist = randomDouble(currSettings.minEqDist, currSettings.maxEqDist);
 
-    double power = randomDouble(minLogStrength, maxLogStrength);
+    double power = randomDouble(currSettings.minLogStrength, currSettings.maxLogStrength);
     double base = eqDist;
-    if (power < 0) base /= minEqDist;
-    else base /= maxEqDist;
+    if (power < 0) base /= currSettings.minEqDist;
+    else base /= currSettings.maxEqDist;
     strength = pow(base, power);
 
     calcCoeffs();

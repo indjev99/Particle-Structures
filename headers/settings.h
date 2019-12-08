@@ -3,36 +3,42 @@
 
 #include "color.h"
 
-extern Color backColor;
+struct Settings
+{
+    static Color backColor; // not physical
+    static int timeResolution; // 1 / s
+    static bool enableDecay; // not physical
 
-extern int timeResolution; // 1 / s
+    int seed; // not physical
 
-extern int numParticles; // not physical
-extern int numTypes; // not physical
-extern int univRad; // m
+    int numParticles; // not physical
+    int numTypes; // not physical
+    int univRad; // m
 
-extern double dragCoeff;  // kg / (m * s)
-extern double particleDensity; // kg / m^2
+    double dragCoeff;  // kg / (m * s)
+    double particleDensity; // kg / m^2
 
-extern double minMass; // kg
-extern double maxMass; // kg
+    double minMass; // kg
+    double maxMass; // kg
 
-extern bool enableDecay; // not physical
+    int minDecayParticles; // dimensionless
+    int maxDecayParticles; // dimensionless
 
-extern int minDecayParticles; // dimensionless
-extern int maxDecayParticles; // dimensionless
+    double minMeanLifetime; // s
+    double maxMeanLifetime; // s
 
-extern double minMeanLifetime; // s
-extern double maxMeanLifetime; // s
+    bool asymmetricInteractions; // not physical
 
-extern bool asymmetricInteractions; // not physical
+    double minEqDist; // m
+    double maxEqDist; // m
 
-extern double minEqDist; // m
-extern double maxEqDist; // m
+    double minLogStrength; // dimensionless
+    double maxLogStrength; // dimensionless
 
-extern double minLogStrength; // dimensionless
-extern double maxLogStrength; // dimensionless
+    double normalizedMaxStrength; // N
+};
 
-extern double normalizedMaxStrength; // N
+extern Settings currSettings;
+extern Settings lastSettings;
 
 #endif // SETTINGS_H_INCLUDED

@@ -26,8 +26,8 @@ const Color& ParticleType::getColor() const
 }
 void ParticleType::randomize()
 {
-    mass = randomDouble(minMass, maxMass);
-    radius = sqrt(fabs(mass / (PI * particleDensity)));
+    mass = randomDouble(currSettings.minMass, currSettings.maxMass);
+    radius = sqrt(fabs(mass / (PI * currSettings.particleDensity)));
 
     double r = randomDouble(0, 1);
     double g = randomDouble(0, 1);
