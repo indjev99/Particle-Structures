@@ -29,6 +29,4 @@ Two further additions have been introduced:
 
 2. Particle decay. Each particle type has a halflife/mean lifetime, when the particle decays it produces some number of other particles. Conservation of mass, conservation of energy and Galilean relativity are not currently followed (though conservation of momentum is).
 
-Download executable: https://sourceforge.net/projects/particle-structures/
-
 This project uses the GLFW library and OpenGL.
