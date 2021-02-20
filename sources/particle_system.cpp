@@ -90,18 +90,18 @@ void ParticleSystem::step(double timeDelta)
     for (int i = 0; i < numParticles; ++i)
     {
         if (i == locked) continue;
-        particles[i].clearForces();
         for (int j = 0; j < numParticles; ++j)
         {
             if (i == j) continue;
             int id1 = particles[i].getTypeID();
             int id2 = particles[j].getTypeID();
             Vec2D dist = particles[j].getPos() - particles[i].getPos();
+            //Vec2D distGrad = particles[j].getVel() - particles[i].getVel();
             Vec2D force = interactions[id1][id2].eval(dist);
+            //Vec2D forceGrad = interactions[id1][id2].evalGrad(dist, distGrad);
             particles[i].addForce(force);
+            //particles[i].addForceGrad(forceGrad);
         }
-        particles[i].calcAcc();
-        particles[i].calcJrk();
         particles[i].step(timeDelta);
     }
 }

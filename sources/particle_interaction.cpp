@@ -40,3 +40,12 @@ Vec2D ParticleInteraction::eval(const Vec2D& dist) const
     double invLen = 1 / dist.length();
     return dist * ((lin - quad * invLen) * invLen * invLen);
 }
+
+Vec2D ParticleInteraction::evalGrad(const Vec2D& dist, const Vec2D& distGrad) const
+{
+    double invLen = 1 / dist.length();
+    double invLenSq = invLen * invLen;
+    double dp = dot(dist, distGrad);
+    return distGrad * ((lin - quad * invLen) * invLenSq)
+         - dist * ((2 * lin - 3 * quad * invLen) * dp * invLenSq * invLenSq);
+}

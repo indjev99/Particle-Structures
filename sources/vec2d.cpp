@@ -17,6 +17,10 @@ double Vec2D::length() const
 {
     return sqrt(x * x + y * y);
 }
+double dot(const Vec2D& u, const Vec2D& v)
+{
+    return u.x * v.x + u.y * v.y;
+}
 Vec2D operator+(const Vec2D& u, const Vec2D& v)
 {
     return Vec2D(u.x + v.x, u.y + v.y);

@@ -14,6 +14,7 @@ struct Vec2D
 
 extern const Vec2D zero2D;
 
+double dot(const Vec2D& u, const Vec2D& v);
 Vec2D operator+(const Vec2D& u, const Vec2D& v);
 Vec2D operator-(const Vec2D& u, const Vec2D& v);
 Vec2D operator-(const Vec2D& u);

@@ -12,6 +12,7 @@ struct ParticleInteraction
     double getStrength() const;
 
     Vec2D eval(const Vec2D& dist) const;
+    Vec2D evalGrad(const Vec2D& dist, const Vec2D& distGrad) const;
 
 private:
     void calcCoeffs();
