@@ -8,6 +8,7 @@ ParticleDecay::ParticleDecay(const std::vector<ParticleType>& types):
 {
     randomize();
 }
+
 void ParticleDecay::randomize()
 {
     meanLife = randomDouble(currSettings.minMeanLifetime, currSettings.maxMeanLifetime);
@@ -18,12 +19,14 @@ void ParticleDecay::randomize()
         decayTypeIDs.push_back(typeID);
     }
 }
+
 bool ParticleDecay::shouldDecay(double timeDelta)
 {
     double prob = 1 - exp(-timeDelta / meanLife);
     double roll = randomDouble(0, 1 / prob);
     return roll < 1;
 }
+
 ParticleDecayResult ParticleDecay::doDecay(const Particle& particle)
 {
     std::vector<Particle> particles;
@@ -38,6 +41,7 @@ ParticleDecayResult ParticleDecay::doDecay(const Particle& particle)
     }
     return ParticleDecayResult(particles);
 }
+
 ParticleDecayResult ParticleDecay::step(const Particle& particle, double timeDelta)
 {
     if (shouldDecay(timeDelta)) return doDecay(particle);

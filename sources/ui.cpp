@@ -18,6 +18,7 @@ void help()
                  "Middle click a particle - copy its type for particles created in the future\n" <<
                  "Middle click the air - clear the selected type (new particles are random)\n" << std::endl;
 }
+
 void changeParameters()
 {
     bool toEdit;
@@ -65,6 +66,7 @@ void changeParameters()
     std::cout << "Enable particle decay (" << currSettings.enableDecay << "): ";
     std::cin >> currSettings.enableDecay;
 }
+
 void changeTimeResolution()
 {
     std::cout << "A higher value makes the simulation more accurate,\nbut also more computationaly expensive." << std::endl;
@@ -72,6 +74,7 @@ void changeTimeResolution()
     std::cout << "Time resolution (" << currSettings.timeResolution << "): ";
     std::cin >> currSettings.timeResolution;
 }
+
 void saveSettings()
 {
     std::string filename;
@@ -101,6 +104,7 @@ void saveSettings()
     file << lastSettings.maxLogStrength << ' ';
     file << lastSettings.normalizedMaxStrength << '\n';
 }
+
 void loadSettings()
 {
     std::string filename;

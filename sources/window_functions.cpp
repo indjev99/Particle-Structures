@@ -20,6 +20,7 @@ void errorCallback(int error, const char* description)
 {
     std::cerr << error << ": " << description << std::endl;
 }
+
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) keyPress = -1;
@@ -31,6 +32,7 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
     if (key == GLFW_KEY_S && action == GLFW_PRESS) keyPress = 6;
     if (key == GLFW_KEY_L && action == GLFW_PRESS) keyPress = 7;
 }
+
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
     if (button == GLFW_MOUSE_BUTTON_LEFT) mouseClick = 1;
@@ -38,6 +40,7 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
     if (button == GLFW_MOUSE_BUTTON_MIDDLE) mouseClick = 3;
     if (action == GLFW_RELEASE) mouseClick *= -1;
 }
+
 void mousePositionCallback(GLFWwindow* window, double xpos, double ypos)
 {
     mouseMoved = true;
@@ -46,27 +49,32 @@ void mousePositionCallback(GLFWwindow* window, double xpos, double ypos)
     double scale = 2.0 * currSettings.univRad / std::min(windowWidth, windowHeight);
     mousePos = Vec2D(xpos * scale, -ypos * scale);
 }
+
 void windowSizeCallback(GLFWwindow* window, int width, int height)
 {
     windowWidth = width;
     windowHeight = height;
 }
+
 std::string setErrorCallback()
 {
     glfwSetErrorCallback(errorCallback);
     return "GLFW error callback set successfully.";
 }
+
 std::string initializeGLFW()
 {
     if (!glfwInit()) return "Unable to initialize GLFW.";
     return "GLFW initialized successfully.";
 }
+
 std::string createWindow(GLFWwindow*& w)
 {
     w = glfwCreateWindow(windowWidth, windowHeight, "Particle Structures", NULL, NULL);
     if (!w) return "Unable to open window.";
     return "Window created successfully.";
 }
+
 std::string setWindowCallbacks(GLFWwindow* w)
 {
     glfwSetKeyCallback(w, keyCallback);
@@ -75,6 +83,7 @@ std::string setWindowCallbacks(GLFWwindow* w)
     glfwSetWindowSizeCallback(w, windowSizeCallback);
     return "Window callbacks set successfully.";
 }
+
 void stopGraphics(GLFWwindow* w)
 {
     glfwDestroyWindow(w);

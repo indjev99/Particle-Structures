@@ -8,22 +8,27 @@ ParticleType::ParticleType(int ID):
 {
     randomize();
 }
+
 int ParticleType::getID() const
 {
     return ID;
 }
+
 double ParticleType::getMass() const
 {
     return mass;
 }
+
 double ParticleType::getRadius() const
 {
     return radius;
 }
+
 const Color& ParticleType::getColor() const
 {
     return color;
 }
+
 void ParticleType::randomize()
 {
     mass = randomDouble(currSettings.minMass, currSettings.maxMass);
@@ -34,4 +39,3 @@ void ParticleType::randomize()
     double b = randomDouble(0, 1);
     color = Color(r, g, b);
 }
-

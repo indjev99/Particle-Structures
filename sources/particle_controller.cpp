@@ -6,8 +6,7 @@ ParticleController::ParticleController(int& numParticles, std::vector<Particle>&
     particles(particles),
     types(types),
     dragging(locked),
-    copied(-1)
-{}
+    copied(-1) {}
 
 void ParticleController::step(int mouseClick, const Vec2D& mousePos, bool mouseMoved, double timeDelta)
 {

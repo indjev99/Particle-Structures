@@ -32,8 +32,8 @@ double maxLogStrength = -0.5;
 
 double normalizedMaxStrength = 0.015;
 
+Settings lastSettings;
 Settings currSettings = {seed, numParticles, numTypes, univRad, dragCoeff, particleDensity,
                         minMass, maxMass, minDecayParticles, maxDecayParticles,
                         minMeanLifetime, maxMeanLifetime, asymmetricInteractions,
                         minEqDist, maxEqDist, minLogStrength, maxLogStrength, normalizedMaxStrength};
-Settings lastSettings;

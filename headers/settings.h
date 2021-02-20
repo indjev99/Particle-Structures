@@ -38,7 +38,7 @@ struct Settings
     double normalizedMaxStrength; // N
 };
 
-extern Settings currSettings;
 extern Settings lastSettings;
+extern Settings currSettings;
 
 #endif // SETTINGS_H_INCLUDED

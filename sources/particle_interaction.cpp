@@ -7,6 +7,7 @@ ParticleInteraction::ParticleInteraction()
 {
     randomize();
 }
+
 void ParticleInteraction::randomize()
 {
     eqDist = randomDouble(currSettings.minEqDist, currSettings.maxEqDist);
@@ -19,11 +20,13 @@ void ParticleInteraction::randomize()
 
     calcCoeffs();
 }
+
 void ParticleInteraction::scale(double a)
 {
     strength *= a;
     calcCoeffs();
 }
+
 void ParticleInteraction::calcCoeffs()
 {
     lin = 4 * strength * eqDist;

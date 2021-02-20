@@ -21,6 +21,7 @@ void initDraw(GLFWwindow* w)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
+
 void drawCircle(const Vec2D& pos, double radius)
 {
     glBegin(GL_TRIANGLES);
@@ -35,6 +36,7 @@ void drawCircle(const Vec2D& pos, double radius)
     }
     glEnd();
 }
+
 void drawParticle(const Particle& particle)
 {
     double scale = std::min(1.0, 1.0 * windowWidth / windowHeight) / currSettings.univRad;
@@ -54,6 +56,7 @@ void drawParticle(const Particle& particle)
         drawCircle(particle.getPos() * scale, radius * scale);
     }
 }
+
 void drawBackground(GLFWwindow* w)
 {
     double widthHeightRatio = 1.0 * windowWidth / windowHeight;
@@ -69,6 +72,7 @@ void drawBackground(GLFWwindow* w)
 
     glEnd();
 }
+
 void drawParticleSystem(GLFWwindow* w, const ParticleSystem& particleSystem)
 {
     initDraw(w);

@@ -108,6 +108,7 @@ void bound(double& pos, double bound)
         pos = bound * sign(pos);
     }
 }
+
 void Particle::updatePos(const Vec2D& newPos, double timeDelta)
 {
     Vec2D boundNewPos = newPos;

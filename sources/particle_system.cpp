@@ -6,6 +6,7 @@ ParticleSystem::ParticleSystem(int numParticles, int numTypes)
 {
     randomize(numParticles, numTypes);
 }
+
 void ParticleSystem::randomize(int numParticles, int numTypes)
 {
     this->numParticles = numParticles;
@@ -46,6 +47,7 @@ void ParticleSystem::randomize(int numParticles, int numTypes)
 
     randomizeParticles(numParticles);
 }
+
 void ParticleSystem::randomizeParticles(int numParticles)
 {
     this->numParticles = numParticles;
@@ -56,6 +58,7 @@ void ParticleSystem::randomizeParticles(int numParticles)
     }
     locked = -1;
 }
+
 ParticleController ParticleSystem::getController()
 {
     return ParticleController(numParticles, particles, locked, types);

@@ -4,9 +4,8 @@ const ParticleDecayResult noDecay = ParticleDecayResult();
 
 ParticleDecayResult::ParticleDecayResult():
     didDecay(false),
-    particles({})
-{}
+    particles({}) {}
+
 ParticleDecayResult::ParticleDecayResult(const std::vector<Particle>& particles):
     didDecay(true),
-    particles(particles)
-{}
+    particles(particles) {}
