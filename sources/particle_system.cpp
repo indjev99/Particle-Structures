@@ -91,9 +91,6 @@ void ParticleSystem::step(double timeDelta)
     {
         if (i == locked) continue;
         particles[i].clearForces();
-    }
-    for (int i = 0; i < numParticles; ++i)
-    {
         for (int j = 0; j < numParticles; ++j)
         {
             if (i == j) continue;
@@ -103,10 +100,8 @@ void ParticleSystem::step(double timeDelta)
             Vec2D force = interactions[id1][id2].eval(dist);
             particles[i].addForce(force);
         }
-    }
-    for (int i = 0; i < numParticles; ++i)
-    {
-        if (i == locked) continue;
+        particles[i].calcAcc();
+        particles[i].calcJrk();
         particles[i].step(timeDelta);
     }
 }

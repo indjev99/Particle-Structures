@@ -37,6 +37,6 @@ double ParticleInteraction::getStrength() const
 
 Vec2D ParticleInteraction::eval(const Vec2D& dist) const
 {
-    double len = dist.length();
-    return dist * ((lin - quad / len) / len / len);
+    double invLen = 1 / dist.length();
+    return dist * ((lin - quad * invLen) * invLen * invLen);
 }

@@ -59,7 +59,8 @@ void run(GLFWwindow* window)
             if (cnt % 60 == 0)
             {
                 time_t curr = clock();
-                std::cerr << (curr - start) * 1.0 / CLOCKS_PER_SEC << std::endl;
+                double timeFor60Frames = (curr - start) * 1.0 / CLOCKS_PER_SEC;
+                std::cerr << (int) (60 / timeFor60Frames + 0.5) << " FPS" << std::endl;
                 start = curr;
             }
         #endif

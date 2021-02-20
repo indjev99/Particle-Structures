@@ -23,6 +23,8 @@ struct Particle
     void clearForces();
     void addForce(const Vec2D& force);
     void addForceGrad(const Vec2D& forceGrad);
+    void calcAcc();
+    void calcJrk();
     void step(double timeDelta);
 
     void updatePos(const Vec2D& newPos, double timeDelta);
@@ -31,6 +33,8 @@ private:
     const ParticleType* type;
     Vec2D pos; // m
     Vec2D vel; // m / s
+    Vec2D frc; // N
+    Vec2D fgrad; // N / s
     Vec2D acc; // m / s^2
     Vec2D jrk; // m / s^3
 };

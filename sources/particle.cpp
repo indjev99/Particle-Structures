@@ -49,16 +49,30 @@ Vec2D Particle::getImpulse() const
 
 void Particle::clearForces()
 {
-    acc = zero2D;
-    jrk = zero2D;
+    frc = zero2D;
+    fgrad = zero2D;
 }
 void Particle::addForce(const Vec2D& force)
 {
-    acc += force / getMass();
+    frc += force;
 }
 void Particle::addForceGrad(const Vec2D& forceGrad)
 {
-    jrk += forceGrad / getMass();
+    fgrad += forceGrad;
+}
+
+void Particle::calcAcc()
+{
+    double currDrag = -currSettings.dragCoeff * 2 * getRadius();
+    addForce(vel * currDrag);
+    acc = frc / getMass();
+}
+
+void Particle::calcJrk()
+{
+    double currDrag = -currSettings.dragCoeff * 2 * getRadius();
+    addForceGrad(acc * currDrag);
+    jrk = fgrad / getMass();
 }
 
 void bounce(double& pos, double& vel, double bound)
@@ -71,11 +85,7 @@ void bounce(double& pos, double& vel, double bound)
 }
 void Particle::step(double timeDelta)
 {
-    double currDrag = -currSettings.dragCoeff * 2 * getRadius();
-    addForce(vel * currDrag);
-    addForceGrad(acc * currDrag);
-
-    pos += vel * timeDelta + acc * timeDelta * timeDelta / 2 + jrk * timeDelta * timeDelta * timeDelta / 3;
+    pos += vel * timeDelta + acc * timeDelta * timeDelta / 2 + jrk * timeDelta * timeDelta * timeDelta / 6;
     vel += acc * timeDelta + jrk * timeDelta * timeDelta / 2;
 
     bounce(pos.x, vel.x, currSettings.univRad - getRadius());
